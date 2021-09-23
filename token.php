@@ -10,7 +10,7 @@ function generate_token($tokenlenght) { //This Generates a token with a custom L
 
 function upload_token($token,$email) { //Upload token to Database
 
-    require_once('database.php'); //Requiring connection
+    require('database.php'); //Requiring connection
     $timestamp = date("Y-m-d"); //TimeStamping today
     
                 //we start the query
@@ -39,7 +39,7 @@ function mail_token($token,$email) { //Sends an Email with token link, still a W
 
     function validate_token($token,$email) { //This Validate the token with given $token and $email 
 
-        require_once('database.php'); //Connecting to database
+        require('database.php'); //Connecting to database
 
         //Search for the token and gets time of token and email
         $query = "
