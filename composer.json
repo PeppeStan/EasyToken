@@ -13,6 +13,7 @@
     ],
     "description": "An Easy yet effective Php Token generator and validator for user registration",
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^6.5"
     }
 }
