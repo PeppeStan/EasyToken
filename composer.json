@@ -13,7 +13,6 @@
     ],
     "description": "An Easy yet effective Php Token generator and validator for user registration",
     "require": {
-        "php": ">=7.4",
-        "another-vendor/package": "1.*"
+        "php": ">=7.4"
     }
 }
