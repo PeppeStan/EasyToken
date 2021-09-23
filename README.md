@@ -12,6 +12,10 @@ Hi! I'm Peppe 👽 and this is my first release 🔥 , it's meant to Create 🆕
 ***Using Release*** 
 Download the .zip files and put into the website folder
 
+# Requirements
+ PHPMailer /PHPMailer
+
+
 
 ## Database
 
