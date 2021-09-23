@@ -1,5 +1,7 @@
-<?php
-
+ <?php
+//These must be at the top of your script, not inside a function
+require("../vendor/phpmailer/phpmailer/src/PHPMailer.php"); 
+require("../vendor/phpmailer/phpmailer/src/SMTP.php");
 $timestamp = date("Y-m-d"); //We generate a DATETIME FORMAT DATE FOR EASY MYSQL INSERTION - USER DATE WITH 6 NUMBER LIMIT
 
 function generate_token($tokenlenght) { //This Generates a token with a custom Lenght as $tokenlenght so wee need to pass the lenght RECONDEMEND AT LEAST 5.
@@ -28,12 +30,32 @@ function upload_token($token,$email) { //Upload token to Database
 
 function mail_token($token,$email) { //Sends an Email with token link, still a W.I.P. Maybe can use PhpMailer
 
-    $subject = ' YOURNAME Account activation'; //Subject of email
-    $weburl = 'http://mywebsite.com/myfilefolder/'; //your tokenvalidate.php file folder into website
-    $url = $weburl.$token.'&email='.$email; //Concatenate and create the get string 
-    $message = 'Hi, click on this link to activate your account!'.' '.$url.' '.'Thanks!'; //The message with concatenation
+    $weburl = 'http://mywebsite/tokenvalidate.php'; //your tokenvalidate.php file folder into website
+    $url = $weburl.'?token='.$token.'&email='.$email; //Concatenate and create the get string 
 
-    mail($email,$subject,$message); //Sends the email W.I.P.
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer\PHPMailer\PHPMailer();
+    $mail->IsSMTP(); // enable SMTP
+    $mail->SMTPDebug = 2; // debugging: 1 = errors and messages, 2 = messages only
+    $mail->SMTPAuth = true; // authentication enabled
+    $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+    $mail->Host = "yourhost";
+    $mail->Port = 465; // or 587
+    $mail->IsHTML(true);
+    $mail->Username = "yourusername";
+    $mail->Password = "yourpassword";
+    $mail->SetFrom("youremail");
+    $mail->Subject = "your subject";
+    $mail->Body    = 'Hi, Please click on the link in order to activate your account'.' '.$url.' '.'Thanks!';
+    $mail->AddAddress($email);
+
+     if(!$mail->Send()) {
+        echo "Mailer Error: " . $mail->ErrorInfo;
+     } else {
+        echo "Message has been sent";
+     }
+
+
 
     }
 
