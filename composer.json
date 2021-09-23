@@ -3,7 +3,14 @@
     "type": "library",
     "homepage": "https://github.com/Seldaek/monolog",
     "license": "MIT",
-    "authors": "PeppeStan",
+    "authors": [
+        {
+            "name": "PeppeStan",
+            "email": "peppestan@protonmail.com",
+            "homepage": "https://github.com/PeppeStan/",
+            "role": "Developer"
+        }
+    ],
     "description": "An Easy yet effective Php Token generator and validator for user registration",
     "require": {
         "php": ">=7.4",
