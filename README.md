@@ -39,3 +39,6 @@ This function upload the token and email variables into the database
 Sends an email to the user email with the generated token url - **maybe this still doesn't work properly**
 ## function  validate_token(token,email)
 The most important function, checks if the token is expired (**time limit is 24hours**) and if it's not it validate the user and delete the users token.
+## function  validate_email(email)
+Validates if the email is real or is in the blacklist file (temporary emails)
+Returns true or false
