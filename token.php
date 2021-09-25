@@ -118,5 +118,21 @@ function mail_token($token,$email) { //Sends an Email with token link, still a W
     }
 
 
+    function validate_email($email){ //Checks if an email is actually valid or it's some fake scam kiddo
+
+        $emailsanitized = explode('@',$email);
+        $handle = fopen('emailblocklist.ini', 'r');
+        $valid = false; // init as false
+        while (($buffer = fgets($handle)) !== false) {
+            if (strpos($buffer, $emailsanitized[1]) !== false) {
+                $valid = TRUE;
+                break; // Once you find the string, you should break out the loop.
+            }      
+        }
+        fclose($handle);
+        return($valid);
+    }
+
+
 
 ?>
